@@ -27,7 +27,7 @@ class SearchBar extends Component {
     return (
       <form onSubmit={this.onFormSubmit}>
         <input
-          placeholder="Enter a repo in the folloing format: 'facebook/react'"
+          placeholder="Enter a repo in the following format: 'facebook/react'"
           value={this.state.searchTerm}
           onChange={this.onInputChange}
         />

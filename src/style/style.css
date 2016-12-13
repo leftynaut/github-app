@@ -1,0 +1,10 @@
+.container {
+  padding-top: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+  .row.valign-wrapper {
+    display: inherit;
+    text-align: center;
+  }
+}

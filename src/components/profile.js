@@ -14,12 +14,18 @@ class Profile extends Component {
       return <div>Profile loading</div>;
     }
     return (
-      <div>
-        <img src={profile.avatar_url} alt="profile" />
-        <h3>{profile.name}</h3>
-        <p>Number of followers: {profile.followers}</p>
-        <p>Bio: {profile.bio}</p>
-        <p>Been on Github since <TimeAgo date={profile.created_at} /></p>
+      <div className="container">
+        <div className="row valign-wrapper">
+          <div className="col m6">
+            <img className="circle responsive-img" src={profile.avatar_url} alt="profile" />
+          </div>
+          <div className="col m6 valign">
+            <h3>{profile.name}</h3>
+            <p>{profile.bio}</p>
+            <p>Number of followers: <strong>{profile.followers}</strong></p>
+            <p>Github user since: <strong><TimeAgo date={profile.created_at} /></strong></p>
+          </div>
+        </div>
       </div>
     );
   }
