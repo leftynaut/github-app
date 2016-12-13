@@ -16,10 +16,10 @@ class Profile extends Component {
     return (
       <div className="container">
         <div className="row valign-wrapper">
-          <div className="col m6">
+          <div className="col m5">
             <img className="circle responsive-img" src={profile.avatar_url} alt="profile" />
           </div>
-          <div className="col m6 valign">
+          <div className="col m7 valign">
             <h3>{profile.name}</h3>
             <p>{profile.bio}</p>
             <p>Number of followers: <strong>{profile.followers}</strong></p>

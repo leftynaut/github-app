@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import SearchBar from '../containers/search_bar';
+// import SearchBar from '../containers/search_bar';
 import FavoriteList from '../containers/favorite_list';
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <SearchBar {...this.props} />
         <FavoriteList {...this.props} />
       </div>
     );
