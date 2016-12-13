@@ -1,8 +1,7 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import Layout from './components/Layout';
-import Counter from './components/Counter';
+import Layout from './components/layout';
 import Home from './components/home';
 
 
@@ -32,7 +31,6 @@ export default function App() {
     <Router history={browserHistory}>
       <Route path='/' component={Layout}>
         <IndexRoute component={Home} />
-        <Route path='counter' component={Counter} />
       </Route>
     </Router>
   );
