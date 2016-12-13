@@ -17,9 +17,7 @@ class Profile extends Component {
     const username = this.props.params.username;
     return (
       <div className="single-photo">
-        <p>
           {this.renderProfile()}
-        </p>
       </div>
     );
   }
