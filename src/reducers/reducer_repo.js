@@ -4,6 +4,7 @@ export default function(state = [], action) {
   switch (action.type) {
     case FETCH_REPO:
       // return repo info
+      console.log(action.payload);
       return [action.payload.data, ...state];
     case REMOVE_REPO:
       // remove repo
