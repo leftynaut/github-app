@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import {Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn} from 'material-ui/Table';
 
 class FavoriteList extends Component {
 
@@ -9,28 +15,30 @@ class FavoriteList extends Component {
     const name = repoData.name;
     const stars = repoData.stargazers_count;
     return (
-      <tr>
-        <td>{name}</td>
-        <td><Link to={`/author/${author}`}>{author}</Link></td>
-        <td>{stars}</td>
-      </tr>
+      <TableRow>
+        <TableRowColumn>{name}</TableRowColumn>
+        <TableRowColumn>
+          <Link to={`/author/${author}`}>{author}</Link>
+        </TableRowColumn>
+        <TableRowColumn>{stars}</TableRowColumn>
+      </TableRow>
     );
   }
 
   render() {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Repo</th>
-            <th>Author</th>
-            <th>Stars</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHeaderColumn>Repo</TableHeaderColumn>
+            <TableHeaderColumn>Author</TableHeaderColumn>
+            <TableHeaderColumn>Stars</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {this.props.repo.map(this.renderFavorite)}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     );
   }
 }
@@ -38,5 +46,9 @@ class FavoriteList extends Component {
 function mapStateToProps({ repo }) {
   return { repo };
 }
+
+FavoriteList.propTypes = {
+  repo: React.PropTypes.array
+};
 
 export default connect(mapStateToProps)(FavoriteList);
