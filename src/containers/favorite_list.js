@@ -27,7 +27,7 @@ class FavoriteList extends Component {
 
   render() {
     return (
-      <Table>
+      <Table onRowSelection={(i) => {console.dir(this.props.repo[i[0]]);}}>
         <TableHeader>
           <TableRow>
             <TableHeaderColumn>Repo</TableHeaderColumn>
