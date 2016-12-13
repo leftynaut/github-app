@@ -26,8 +26,13 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('profile', state);
   return { profile: state.author.profile };
 }
+
+Profile.propTypes = {
+  fetchAuthor: React.PropTypes.func,
+  profile: React.PropTypes.obj,
+  params: React.PropTypes.obj
+};
 
 export default connect(mapStateToProps, { fetchAuthor })(Profile);
