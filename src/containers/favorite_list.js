@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 class FavoriteList extends Component {
 
@@ -9,8 +10,8 @@ class FavoriteList extends Component {
     const stars = repoData.stargazers_count;
     return (
       <tr>
-        <td>{author}</td>
         <td>{name}</td>
+        <td><Link to={`/author/${author}`}>{author}</Link></td>
         <td>{stars}</td>
       </tr>
     );
