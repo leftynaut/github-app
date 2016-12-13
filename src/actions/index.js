@@ -47,7 +47,7 @@ export function removeRepo(index) {
 export function fetchAuthor(username) {
   const url = `https://api.github.com/users/${username}`;
   const request = axios.get(url);
-
+  console.log('Fetching author!');
   return {
     type: FETCH_AUTHOR,
     payload: request
