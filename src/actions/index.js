@@ -6,9 +6,10 @@ export const FETCH_AUTHOR = 'FETCH_AUTHOR';
 
 // action to fetch a repo from github
 export function fetchRepo(userAndRepo) {
+  console.log('Fetching repo', userAndRepo);
   const url = `https://api.github.com/repos/${userAndRepo}`;
   const request = axios.get(url);
-
+  console.log('Request', request);
   return {
     type: FETCH_REPO,
     payload: request

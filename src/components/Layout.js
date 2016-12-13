@@ -2,9 +2,9 @@ import React from 'react';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux';
-import configureStore from '../store/configureStore';
-
-const store = configureStore();
+import { createStore, applyMiddleware } from 'redux';
+import ReduxPromise from 'redux-promise';
+import reducers from '../reducers';
 
 /**
  * The provided Redux store uses the `redux-logger` middleware.
@@ -17,12 +17,12 @@ const store = configureStore();
  * @TODO Please remove the test action below.
  */
 
-store.dispatch({ type: 'TEST_ACTION' });
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 export default function Layout({ children }) {
   return (
     <MuiThemeProvider>
-      <Provider store={store}>
+      <Provider store={createStoreWithMiddleware(reducers)}>
         <div>
           <Toolbar>
             <ToolbarTitle text="Github Favorites" />

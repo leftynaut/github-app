@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar {...this.props} />
       </div>
     );
   }
