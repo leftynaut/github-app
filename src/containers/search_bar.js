@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchRepo } from '../actions/index';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -34,8 +37,12 @@ class SearchBar extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchRepo }, dispatch);
+}
+
 SearchBar.propTypes = {
   fetchRepo: React.PropTypes.func
 };
 
-export default SearchBar;
+export default connect(null, mapDispatchToProps)(SearchBar);

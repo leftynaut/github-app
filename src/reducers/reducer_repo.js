@@ -4,6 +4,7 @@ export default function(state = [], action) {
   switch (action.type) {
     case FETCH_REPO:
       // return repo info
+      console.log(state, action);
       break;
     case REMOVE_REPO:
       // remove repo
