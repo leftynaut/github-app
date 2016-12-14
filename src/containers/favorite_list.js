@@ -22,12 +22,12 @@ class FavoriteList extends Component {
     this.props.fetchCommits(`${repo.owner.login}/${repo.name}`);
   }
 
-  renderFavorite(repoData) {
+  renderFavorite(repoData, i) {
     const author = repoData.owner.login;
     const name = repoData.name;
     const stars = repoData.stargazers_count;
     return (
-      <TableRow>
+      <TableRow key={i}>
         <TableRowColumn>{name}</TableRowColumn>
         <TableRowColumn>
           <Link to={`/author/${author}`}>{author}</Link>
@@ -63,7 +63,8 @@ function mapStateToProps({ repo }) {
 }
 
 FavoriteList.propTypes = {
-  repo: React.PropTypes.array
+  repo: React.PropTypes.arrayOf(React.PropTypes.object),
+  fetchCommits: React.PropTypes.function
 };
 
 export default connect(mapStateToProps, { fetchCommits })(FavoriteList);
