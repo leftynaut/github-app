@@ -9,6 +9,8 @@ import reducers from './reducers';
 import routes from './routes';
 import promise from 'redux-promise';
 
+// commented out code represents the default state prior to use of custom backend
+
 // import favorites from './data/favorites';
 
 // const defaultState = {

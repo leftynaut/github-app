@@ -9,6 +9,7 @@ export const FETCH_AUTHOR = 'FETCH_AUTHOR';
 export function fetchRepo(userAndRepo, all) {
   const url = `https://api.github.com/repos/${userAndRepo}`;
   const request = axios.get(url);
+  // prevents axios from posting search queries on intial load
   if (!all) {
     axios.post(`https://github-favorites-backend.herokuapp.com/api/${userAndRepo}`);
   }
@@ -31,6 +32,7 @@ export function fetchCommits(userAndRepo) {
 // action to remove a repo from user's page
 export function removeRepo(index) {
   const request = index;
+  // TODO: add removal of repo to backend
   return {
     type: REMOVE_REPO,
     payload: request

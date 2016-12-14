@@ -6,6 +6,9 @@ import SearchBar from '../containers/search_bar';
 export default class App extends Component {
   componentWillMount() {
   }
+
+  // TODO: replace Toolbar with MaterialUI App Bar
+
   render() {
     return (
       <div>

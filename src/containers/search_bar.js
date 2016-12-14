@@ -14,6 +14,8 @@ class SearchBar extends Component {
     this.onInputChange = this.onInputChange.bind(this);
   }
 
+  // when component mounts, axios makes a get request for all search terms
+  // and populates the app accordingly
   componentWillMount() {
     const request = axios.get('https://github-favorites-backend.herokuapp.com/api');
     request.then(res => {
@@ -33,6 +35,7 @@ class SearchBar extends Component {
     this.setState({ searchTerm: e.target.value });
   }
 
+  // TODO: setup RegEx form validation
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
@@ -45,8 +48,6 @@ class SearchBar extends Component {
     );
   }
 }
-
-// <button type="submit">Search</button>
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchRepo }, dispatch);

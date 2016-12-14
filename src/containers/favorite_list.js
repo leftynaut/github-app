@@ -20,6 +20,10 @@ class FavoriteList extends Component {
       previous: null
     };
 
+    // previous state required as clicking away from the table component will
+    // cause the selected state to result in undefined. TODO: add stopPropagation()
+    // to the info component, so selected state will persist
+
     this.renderInfo = this.renderInfo.bind(this);
     this.renderFavorite = this.renderFavorite.bind(this);
   }
