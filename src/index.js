@@ -8,18 +8,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import reducers from './reducers';
 import routes from './routes';
 import promise from 'redux-promise';
-const defaultState = {
-  repo:
-  {favorites:
-  [{owner: {
-    login: 'facebook'
-  },
-    name: 'react',
-    stargazers_count: 55692
-  }
-  ]
-  }
 
+import favorites from './data/favorites';
+
+const defaultState = {
+  repo: favorites
 };
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 

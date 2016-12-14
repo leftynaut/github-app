@@ -18,7 +18,6 @@ export function fetchRepo(userAndRepo) {
 
 // action to fetch a repo from github
 export function fetchCommits(userAndRepo) {
-  console.log('userAndRepo', userAndRepo);
   const url = `https://api.github.com/repos/${userAndRepo}/commits`;
   const request = axios.get(url);
   return {
