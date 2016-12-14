@@ -6,9 +6,20 @@
   font-size: .9em;
 }
 
+.commits {
+  padding-top: 1em;
+}
+
+.remove {
+  text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
   .row.valign-wrapper {
     display: inherit;
     text-align: center;
+  }
+  .commitTime {
+    padding-bottom: 1em;
   }
 }
