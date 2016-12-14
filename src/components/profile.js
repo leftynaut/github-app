@@ -37,8 +37,8 @@ function mapStateToProps(state) {
 
 Profile.propTypes = {
   fetchAuthor: React.PropTypes.func,
-  profile: React.PropTypes.obj,
-  params: React.PropTypes.obj
+  profile: React.PropTypes.object,
+  params: React.PropTypes.object
 };
 
 export default connect(mapStateToProps, { fetchAuthor })(Profile);

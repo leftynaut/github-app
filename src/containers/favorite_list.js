@@ -63,8 +63,8 @@ function mapStateToProps({ repo }) {
 }
 
 FavoriteList.propTypes = {
-  repo: React.PropTypes.arrayOf(React.PropTypes.object),
-  fetchCommits: React.PropTypes.function
+  repo: React.PropTypes.any,
+  fetchCommits: React.PropTypes.func
 };
 
 export default connect(mapStateToProps, { fetchCommits })(FavoriteList);
