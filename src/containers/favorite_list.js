@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import {Table,
+import { fetchCommits } from '../actions/index';
+import { Table,
   TableBody,
   TableHeader,
   TableHeaderColumn,
   TableRow,
-  TableRowColumn} from 'material-ui/Table';
+  TableRowColumn } from 'material-ui/Table';
+
+import Info from './info';
 
 class FavoriteList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.renderInfo = this.renderInfo.bind(this);
+  }
+  renderInfo(selection) {
+    const repo = this.props.repo.favorites[selection[0]];
+    this.props.fetchCommits(`${repo.owner.login}/${repo.name}`);
+  }
 
   renderFavorite(repoData) {
     const author = repoData.owner.login;
@@ -27,18 +39,21 @@ class FavoriteList extends Component {
 
   render() {
     return (
-      <Table onRowSelection={(i) => {console.dir(this.props.repo[i[0]]);}}>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>Repo</TableHeaderColumn>
-            <TableHeaderColumn>Author</TableHeaderColumn>
-            <TableHeaderColumn>Stars</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {this.props.repo.map(this.renderFavorite)}
-        </TableBody>
-      </Table>
+      <div>
+        <Info {...this.props} />
+        <Table onRowSelection={this.renderInfo}>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Repo</TableHeaderColumn>
+              <TableHeaderColumn>Author</TableHeaderColumn>
+              <TableHeaderColumn>Stars</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {this.props.repo.favorites.map(this.renderFavorite)}
+          </TableBody>
+        </Table>
+      </div>
     );
   }
 }
@@ -51,4 +66,4 @@ FavoriteList.propTypes = {
   repo: React.PropTypes.array
 };
 
-export default connect(mapStateToProps)(FavoriteList);
+export default connect(mapStateToProps, { fetchCommits })(FavoriteList);
