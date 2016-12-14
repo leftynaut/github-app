@@ -18,7 +18,6 @@ class FavoriteList extends Component {
     this.renderInfo = this.renderInfo.bind(this);
   }
   renderInfo(selection) {
-    console.log(selection);
     const repo = this.props.repo.favorites[selection[0]];
     this.props.fetchCommits(`${repo.owner.login}/${repo.name}`);
   }
@@ -41,7 +40,6 @@ class FavoriteList extends Component {
   render() {
     return (
       <div>
-        <Info {...this.props} />
         <Table onRowSelection={this.renderInfo}>
           <TableHeader>
             <TableRow>
@@ -54,6 +52,7 @@ class FavoriteList extends Component {
             {this.props.repo.favorites.map(this.renderFavorite)}
           </TableBody>
         </Table>
+        <Info {...this.props} />
       </div>
     );
   }
