@@ -15,19 +15,27 @@ class FavoriteList extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      selected: false
+    };
+
     this.renderInfo = this.renderInfo.bind(this);
+    this.renderFavorite = this.renderFavorite.bind(this);
   }
   renderInfo(selection) {
     const repo = this.props.repo.favorites[selection[0]];
     this.props.fetchCommits(`${repo.owner.login}/${repo.name}`);
+    this.setState({selected: selection[0]});
   }
 
   renderFavorite(repoData, i) {
     const author = repoData.owner.login;
     const name = repoData.name;
     const stars = repoData.stargazers_count;
+    let bool;
+    this.state.selected === i ? bool = true : bool = false;
     return (
-      <TableRow key={i}>
+      <TableRow key={i} selected={bool}>
         <TableRowColumn>{name}</TableRowColumn>
         <TableRowColumn>
           <Link to={`/author/${author}`}>{author}</Link>
