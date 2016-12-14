@@ -8,13 +8,25 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import reducers from './reducers';
 import routes from './routes';
 import promise from 'redux-promise';
+const defaultState = {
+  repo:
+  {favorites:
+  [{owner: {
+    login: 'facebook'
+  },
+    name: 'react',
+    stargazers_count: 55692
+  }
+  ]
+  }
 
+};
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 const rootEl = document.getElementById('root');
 ReactDOM.render(
   <MuiThemeProvider>
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Provider store={createStoreWithMiddleware(reducers, defaultState)}>
       <Router history={browserHistory} routes={routes} />
     </Provider>
   </MuiThemeProvider>

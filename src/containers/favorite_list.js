@@ -18,6 +18,7 @@ class FavoriteList extends Component {
     this.renderInfo = this.renderInfo.bind(this);
   }
   renderInfo(selection) {
+    console.log(selection);
     const repo = this.props.repo.favorites[selection[0]];
     this.props.fetchCommits(`${repo.owner.login}/${repo.name}`);
   }
