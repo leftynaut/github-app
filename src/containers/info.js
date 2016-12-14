@@ -3,7 +3,7 @@ import TimeAgo from 'react-timeago';
 
 class Info extends Component {
   render() {
-    if (!this.props.repo.commits) {
+    if (!this.props.repo.commits || this.props.selected === undefined) {
       return <div></div>;
     }
     const c = this.props.repo.commits;
@@ -23,7 +23,8 @@ class Info extends Component {
 }
 
 Info.propTypes = {
-  repo: React.PropTypes.any
+  repo: React.PropTypes.any,
+  selected: React.PropTypes.any
 };
 
 export default Info;

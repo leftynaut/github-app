@@ -24,7 +24,9 @@ class FavoriteList extends Component {
   }
   renderInfo(selection) {
     const repo = this.props.repo.favorites[selection[0]];
-    this.props.fetchCommits(`${repo.owner.login}/${repo.name}`);
+    if (repo) {
+      this.props.fetchCommits(`${repo.owner.login}/${repo.name}`);
+    }
     this.setState({selected: selection[0]});
   }
 
@@ -60,7 +62,7 @@ class FavoriteList extends Component {
             {this.props.repo.favorites.map(this.renderFavorite)}
           </TableBody>
         </Table>
-        <Info {...this.props} />
+        <Info {...this.props} selected={this.state.selected} />
       </div>
     );
   }
