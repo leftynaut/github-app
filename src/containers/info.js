@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { removeRepo } from '../actions/index';
+import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 import TimeAgo from 'react-timeago';
+import { removeRepo } from '../actions/index';
 
 class Info extends Component {
   constructor(props) {
@@ -21,15 +22,24 @@ class Info extends Component {
       return <div></div>;
     }
     const c = this.props.repo.commits;
-    const cArr = [c[0].commit, c[1].commit, c[2].commit];
+    const cArr = [c[0], c[1], c[2]];
     return (
       <div className="commits">
         <div className="row">
+          <div className="last3 col s12">
+            Last three commits:
+          </div>
+        </div>
+        <div className="row">
             {cArr.map((commit, i) => (
               <div key={i} className="col m4">
-                <div><strong>{commit.author.name}</strong></div>
-                <div>{commit.message}</div>
-                <div className="commitTime"><TimeAgo date={commit.author.date} /></div>
+                <div>
+                  <strong>
+                    <Link to={`/author/${commit.author.login}`}>{commit.commit.author.name}</Link>
+                  </strong>
+                </div>
+                <div>{commit.commit.message}</div>
+                <div className="commitTime"><TimeAgo date={commit.commit.author.date} /></div>
               </div>
             ))}
         </div>
