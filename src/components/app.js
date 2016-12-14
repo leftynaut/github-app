@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import SearchBar from '../containers/search_bar';
 
 export default class App extends Component {
+  componentWillMount() {
+  }
   render() {
     return (
       <div>
