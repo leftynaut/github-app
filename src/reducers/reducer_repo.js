@@ -11,8 +11,9 @@ export default function(state = INITIAL_STATE, action) {
       // return commit info
       return { favorites: [...state.favorites], commits: action.payload.data };
     case REMOVE_REPO:
-      // remove repo
-      break;
+    // remove repo
+      return { favorites: [...state.favorites.slice(0, action.payload),
+        ...state.favorites.slice(action.payload + 1)]};
     default:
       return state;
   }

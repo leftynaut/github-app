@@ -16,7 +16,8 @@ class FavoriteList extends Component {
     super(props);
 
     this.state = {
-      selected: false
+      selected: false,
+      previous: null
     };
 
     this.renderInfo = this.renderInfo.bind(this);
@@ -28,6 +29,11 @@ class FavoriteList extends Component {
       this.props.fetchCommits(`${repo.owner.login}/${repo.name}`);
     }
     this.setState({selected: selection[0]});
+    if (selection[0] !== undefined) {
+      this.setState({
+        previous: selection[0]
+      });
+    }
   }
 
   renderFavorite(repoData, i) {
@@ -50,19 +56,26 @@ class FavoriteList extends Component {
   render() {
     return (
       <div>
-        <Table onRowSelection={this.renderInfo}>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>Repo</TableHeaderColumn>
-              <TableHeaderColumn>Author</TableHeaderColumn>
-              <TableHeaderColumn>Stars</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {this.props.repo.favorites.map(this.renderFavorite)}
-          </TableBody>
-        </Table>
-        <Info {...this.props} selected={this.state.selected} />
+        <div>
+          <Table onRowSelection={this.renderInfo}>
+            <TableHeader>
+              <TableRow>
+                <TableHeaderColumn>Repo</TableHeaderColumn>
+                <TableHeaderColumn>Author</TableHeaderColumn>
+                <TableHeaderColumn>Stars</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {this.props.repo.favorites.map(this.renderFavorite)}
+            </TableBody>
+          </Table>
+        </div>
+        <div>
+          <Info
+            {...this.props}
+            selected={this.state.selected}
+            previous={this.state.previous} />
+        </div>
       </div>
     );
   }

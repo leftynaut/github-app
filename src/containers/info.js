@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { removeRepo } from '../actions/index';
 import FlatButton from 'material-ui/FlatButton';
 import TimeAgo from 'react-timeago';
 
 class Info extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onButtonClick() {
+    this.props.removeRepo(this.props.previous);
+  }
+
   render() {
-    if (!this.props.repo.commits || this.props.selected === undefined) {
+    if (!this.props.repo.commits) {
       return <div></div>;
     }
     const c = this.props.repo.commits;
@@ -20,15 +33,22 @@ class Info extends Component {
               </div>
             ))}
         </div>
-        <div className="remove col m12"><FlatButton label="Remove" secondary /></div>
+        <div className="remove col m12">
+          <FlatButton label="Remove" secondary onClick={this.onButtonClick} />
+        </div>
       </div>
     );
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ removeRepo }, dispatch);
+}
+
 Info.propTypes = {
   repo: React.PropTypes.any,
-  selected: React.PropTypes.any
+  previous: React.PropTypes.any,
+  removeRepo: React.PropTypes.func
 };
 
-export default Info;
+export default connect(null, mapDispatchToProps)(Info);
