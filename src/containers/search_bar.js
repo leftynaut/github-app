@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import axios from 'axios';
 import { fetchRepo } from '../actions/index';
 
 class SearchBar extends Component {
@@ -11,6 +12,15 @@ class SearchBar extends Component {
     this.state = { searchTerm: '' };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+  }
+
+  componentWillMount() {
+    const request = axios.get('https://github-favorites-backend.herokuapp.com/api');
+    request.then(res => {
+      res.data.forEach(item => {
+        this.props.fetchRepo(item, 'all');
+      });
+    });
   }
 
   onFormSubmit(e) {

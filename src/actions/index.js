@@ -5,11 +5,13 @@ export const FETCH_COMMITS = 'FETCH_COMMITS';
 export const REMOVE_REPO = 'REMOVE_REPO';
 export const FETCH_AUTHOR = 'FETCH_AUTHOR';
 
-
 // action to fetch a repo from github
-export function fetchRepo(userAndRepo) {
+export function fetchRepo(userAndRepo, all) {
   const url = `https://api.github.com/repos/${userAndRepo}`;
   const request = axios.get(url);
+  if (!all) {
+    axios.post(`https://github-favorites-backend.herokuapp.com/api/${userAndRepo}`);
+  }
   return {
     type: FETCH_REPO,
     payload: request

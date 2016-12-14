@@ -23,6 +23,7 @@ class FavoriteList extends Component {
     this.renderInfo = this.renderInfo.bind(this);
     this.renderFavorite = this.renderFavorite.bind(this);
   }
+
   renderInfo(selection) {
     const repo = this.props.repo.favorites[selection[0]];
     if (repo) {

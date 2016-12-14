@@ -9,17 +9,21 @@ import reducers from './reducers';
 import routes from './routes';
 import promise from 'redux-promise';
 
-import favorites from './data/favorites';
+// import favorites from './data/favorites';
 
-const defaultState = {
-  repo: favorites
-};
+// const defaultState = {
+//   repo: favorites
+// };
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 const rootEl = document.getElementById('root');
+
+
+// <Provider store={createStoreWithMiddleware(reducers, defaultState)}>
+
 ReactDOM.render(
   <MuiThemeProvider>
-    <Provider store={createStoreWithMiddleware(reducers, defaultState)}>
+    <Provider store={createStoreWithMiddleware(reducers)}>
       <Router history={browserHistory} routes={routes} />
     </Provider>
   </MuiThemeProvider>
