@@ -6,7 +6,10 @@ export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_REPO:
       // return repo info
-      return { favorites: [...state.favorites, action.payload.data] };
+      if (!action.error) {
+        return { favorites: [...state.favorites, action.payload.data] };
+      }
+      return { favorites: [...state.favorites] };
     case FETCH_COMMITS:
       // return commit info
       return { favorites: [...state.favorites], commits: action.payload.data };
