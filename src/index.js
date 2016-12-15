@@ -5,9 +5,12 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import reducers from './reducers';
 import routes from './routes';
 import promise from 'redux-promise';
+
+injectTapEventPlugin();
 
 // commented out code represents the default state prior to use of custom backend
 
