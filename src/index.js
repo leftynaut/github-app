@@ -6,25 +6,16 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import promise from 'redux-promise';
+
 import reducers from './reducers';
 import routes from './routes';
-import promise from 'redux-promise';
 
 injectTapEventPlugin();
 
-// commented out code represents the default state prior to use of custom backend
-
-// import favorites from './data/favorites';
-
-// const defaultState = {
-//   repo: favorites
-// };
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 const rootEl = document.getElementById('root');
-
-
-// <Provider store={createStoreWithMiddleware(reducers, defaultState)}>
 
 ReactDOM.render(
   <MuiThemeProvider>

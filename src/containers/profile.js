@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TimeAgo from 'react-timeago';
+
 import { fetchAuthor } from '../actions/index';
 
 class Profile extends Component {

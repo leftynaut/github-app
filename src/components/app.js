@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import { Link } from 'react-router';
+
 import SearchBar from '../containers/search_bar';
 
 export default class App extends Component {

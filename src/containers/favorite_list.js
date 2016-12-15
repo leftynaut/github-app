@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { fetchCommits } from '../actions/index';
 import { Table,
   TableBody,
   TableHeader,
@@ -9,6 +8,7 @@ import { Table,
   TableRow,
   TableRowColumn } from 'material-ui/Table';
 
+import { fetchCommits } from '../actions/index';
 import Info from './info';
 
 class FavoriteList extends Component {

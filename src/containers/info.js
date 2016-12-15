@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 import TimeAgo from 'react-timeago';
+
 import { removeRepo } from '../actions/index';
 
 class Info extends Component {
