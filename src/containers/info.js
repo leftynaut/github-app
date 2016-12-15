@@ -14,7 +14,8 @@ class Info extends Component {
   }
 
   onButtonClick() {
-    this.props.removeRepo(this.props.previous);
+    const index = this.props.previous;
+    this.props.removeRepo(index, this.props.repo.favorites[index].full_name);
   }
 
   render() {

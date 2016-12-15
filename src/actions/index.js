@@ -30,9 +30,9 @@ export function fetchCommits(userAndRepo) {
 }
 
 // action to remove a repo from user's page
-export function removeRepo(index) {
+export function removeRepo(index, userAndRepo) {
   const request = index;
-  // TODO: add removal of repo to backend
+  axios.delete(`https://github-favorites-backend.herokuapp.com/api/${userAndRepo}`);
   return {
     type: REMOVE_REPO,
     payload: request
