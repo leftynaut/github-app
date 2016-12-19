@@ -1,4 +1,5 @@
 import axios from 'axios';
+import gql from 'graphql-tag';
 
 export const FETCH_REPO = 'FETCH_REPO';
 export const FETCH_COMMITS = 'FETCH_COMMITS';
@@ -7,6 +8,19 @@ export const FETCH_AUTHOR = 'FETCH_AUTHOR';
 
 // action to fetch a repo from github
 export function fetchRepo(userAndRepo, all) {
+  // const MyQuery = gql`query MyQuery {
+  // repository(owner:"facebook", name:"react") {
+  //   createdAt,
+  //   description
+  // }`;
+  const MyQuery = gql`query {
+  user(login:"leftynaut") {
+    createdAt
+  }
+}`;
+  MyQuery.then(a => {
+    console.log(a);
+  });
   const url = `https://api.github.com/repos/${userAndRepo}`;
   const request = axios.get(url);
   // prevents axios from posting search queries on intial load

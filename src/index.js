@@ -15,8 +15,20 @@ import routes from './routes';
 
 injectTapEventPlugin();
 
+const networkInterface = createNetworkInterface('https://api.github.com/graphql');
+networkInterface.use([{
+  applyMiddleware(req, next) {
+    if (!req.options.headers) {
+      req.options.headers = {};
+    }
+    const token = '244c4ac1094b2dccc59ba368ce9ee4b9af5b42db';
+    req.options.headers.authorization = `Bearer ${token}`;
+    next();
+  }
+}]);
+
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface({ uri: 'http://my-api.graphql.com' })
+  networkInterface
 });
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
