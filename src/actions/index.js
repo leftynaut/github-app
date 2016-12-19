@@ -13,14 +13,14 @@ export function fetchRepo(userAndRepo, all) {
   //   createdAt,
   //   description
   // }`;
-  const MyQuery = gql`query {
-  user(login:"leftynaut") {
-    createdAt
-  }
-}`;
-  MyQuery.then(a => {
-    console.log(a);
-  });
+//   const MyQuery = gql`query {
+//   user(login:"leftynaut") {
+//     createdAt
+//   }
+// }`;
+//   MyQuery.then(a => {
+//     console.log(a);
+//   });
   const url = `https://api.github.com/repos/${userAndRepo}`;
   const request = axios.get(url);
   // prevents axios from posting search queries on intial load
