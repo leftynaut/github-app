@@ -11,7 +11,13 @@ export function fetchRepo(userAndRepo, all) {
   const request = axios.get(url);
   // prevents axios from posting search queries on intial load
   if (!all) {
-    axios.post(`https://github-favorites-backend.herokuapp.com/api/${userAndRepo}`);
+    request
+    .then(() => {
+      axios.post(`https://github-favorites-backend.herokuapp.com/api/${userAndRepo}`);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
   return {
     type: FETCH_REPO,
