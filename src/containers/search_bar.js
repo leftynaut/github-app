@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-apollo';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-// import gql from 'graphql-tag';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import axios from 'axios';
 
 import { fetchRepo } from '../actions/index';
@@ -21,12 +20,12 @@ class SearchBar extends Component {
   // when component mounts, axios makes a get request for all search terms
   // and populates the app accordingly
   componentWillMount() {
-    const request = axios.get('https://github-favorites-backend.herokuapp.com/api');
-    request.then(res => {
-      res.data.forEach(item => {
-        this.props.fetchRepo(item, 'all');
-      });
-    });
+    // const request = axios.get('https://github-favorites-backend.herokuapp.com/api');
+    // request.then(res => {
+    //   res.data.forEach(item => {
+    //     this.props.fetchRepo(item, 'all');
+    //   });
+    // });
   }
 
   onFormSubmit(e) {
@@ -57,22 +56,20 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchRepo }, dispatch);
 }
 
-// const mapQueriesToProps = ({ ownProps, state }) => ({
-//   data: {
-//     query: gql`
-//         query {
-//           repository(owner:"facebook", name: "react"){
-//             createdAt,
-//             description
-//           }
-//         }
-//       `
-//   }
-// });
+const query = gql`
+    query {
+      repository(owner:"facebook", name: "react"){
+        createdAt,
+        description
+      }
+    }
+  `;
+
+const containerWithData = graphql(query)(SearchBar);
 
 SearchBar.propTypes = {
   fetchRepo: React.PropTypes.func
 };
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(containerWithData);
 // export default connect({mapQueriesToProps})(SearchBar);

@@ -5,8 +5,14 @@ import client from './apolloClient';
 
 const middleware = [client.middleware(), promise];
 
+const enhancers = [];
+const devToolsExtension = window.devToolsExtension;
+if (typeof devToolsExtension === 'function') {
+  enhancers.push(devToolsExtension());
+}
+
 const composedMiddleware = compose(
-  applyMiddleware(...middleware)
+  applyMiddleware(...middleware), ...enhancers
 );
 
 const store = createStore(
