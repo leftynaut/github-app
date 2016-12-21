@@ -1,15 +1,13 @@
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.config');
+const express = require('express');
+const path = require('path');
+// const favicon = require('serve-favicon');
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  hot: true,
-  historyApiFallback: true
-}).listen(3000, 'localhost', (err) => {
-  if (err) {
-    return console.log(err);
-  }
+const app = express();
 
-  console.log('Listening at http://localhost:3000/');
+app.get('/', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/index.html`));
+});
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
