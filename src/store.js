@@ -1,8 +1,17 @@
 import promise from 'redux-promise';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reducers from './reducers';
+import client from './apolloClient';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
-const store = createStoreWithMiddleware(reducers);
+const middleware = [client.middleware(), promise];
+
+const composedMiddleware = compose(
+  applyMiddleware(...middleware)
+);
+
+const store = createStore(
+  reducers,
+  composedMiddleware
+);
 
 export default store;
