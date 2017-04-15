@@ -1,7 +1,7 @@
 {
-  "name": "concierge-auctions-coding-challenge",
+  "name": "github-app",
   "version": "1.0.0",
-  "description": "A coding challenge for our prospective employees",
+  "description": "",
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src"
