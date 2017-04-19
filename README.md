@@ -1,4 +1,4 @@
-# Github App
+# Github Favorites
 
 Built with
 * React
